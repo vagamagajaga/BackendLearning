@@ -8,8 +8,7 @@
 import Vapor
 
 struct AuthorsRoutes {
-    func registerUserRoutes(_ app: Application) {
-        
+    func registerAuthorsRoutes(_ app: Application) {
         let controller = AuthorsController()
 
         app.get("authors") { req async throws in

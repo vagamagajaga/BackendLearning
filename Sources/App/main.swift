@@ -26,5 +26,6 @@ app.migrations.add(CreateAuthor())
 app.migrations.add(SeedAuthors())
 
 UserRoutes().registerUserRoutes(app)
+AuthorsRoutes().registerAuthorsRoutes(app)
 
 try app.run()

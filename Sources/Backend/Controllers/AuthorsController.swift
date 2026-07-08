@@ -11,7 +11,7 @@ actor AuthorsController {
     
     let service = AuthorsService()
     
-    func getAuthors(req: Request) async throws -> [DBAuthor] {
-        
+    func getAuthors(req: Request) async throws -> [AuthorResponse] {
+        try await service.getAuthors(on: req.db)
     }
 }
