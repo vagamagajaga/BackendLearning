@@ -10,9 +10,15 @@ import Vapor
 
 struct AuthorsService {
     
-    func getAuthors(on database: Database) async throws -> [AuthorResponse] {
-        let authors = try await DBAuthor.query(on: database)
+    func getAuthors(search: String?, on database: Database) async throws -> [AuthorResponse] {
+        let query = DBAuthor.query(on: database)
             .sort(\.$id)
+
+        if let search {
+            query.filter(\.$fullName ~~ "%\(search)%")
+        }
+
+        let authors = try await query
             .all()
 
         return authors.map(AuthorResponse.init)

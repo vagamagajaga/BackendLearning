@@ -11,11 +11,11 @@ struct AuthorsRoutes {
     func registerAuthorsRoutes(_ app: Application) {
         let controller = AuthorsController()
 
-        app.get("authors") { req async throws in
+        app.get("author") { req async throws in
             try await controller.getAuthors(req: req)
         }
 
-        app.get("author", ":id") { req async throws in
+        app.get("authors", ":id") { req async throws in
             try await controller.getAuthor(req: req)
         }
     }

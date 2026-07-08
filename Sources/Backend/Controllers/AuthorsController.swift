@@ -12,7 +12,7 @@ actor AuthorsController {
     let service = AuthorsService()
     
     func getAuthors(req: Request) async throws -> [AuthorResponse] {
-        try await service.getAuthors(on: req.db)
+        try await service.getAuthors(search: req.authorSearchText, on: req.db)
     }
 
     func getAuthor(req: Request) async throws -> AuthorResponse {
@@ -21,5 +21,16 @@ actor AuthorsController {
         }
 
         return try await service.getAuthor(id: id, on: req.db)
+    }
+}
+
+private extension Request {
+    var authorSearchText: String? {
+        guard let search = try? query.get(String.self, at: "search") else {
+            return nil
+        }
+
+        let trimmed = search.trimmingCharacters(in: .whitespacesAndNewlines)
+        return trimmed.isEmpty ? nil : trimmed
     }
 }
