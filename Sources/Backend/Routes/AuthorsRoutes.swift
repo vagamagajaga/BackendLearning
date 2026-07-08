@@ -14,5 +14,9 @@ struct AuthorsRoutes {
         app.get("authors") { req async throws in
             try await controller.getAuthors(req: req)
         }
+
+        app.get("author", ":id") { req async throws in
+            try await controller.getAuthor(req: req)
+        }
     }
 }
