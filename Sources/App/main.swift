@@ -24,6 +24,8 @@ app.databases.use(
 
 app.migrations.add(CreateAuthor())
 app.migrations.add(SeedAuthors())
+app.migrations.add(AddCountryAndBiographyToAuthor())
+app.migrations.add(CreateBook())
 
 UserRoutes().registerUserRoutes(app)
 AuthorsRoutes().registerAuthorsRoutes(app)
