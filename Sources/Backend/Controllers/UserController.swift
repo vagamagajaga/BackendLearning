@@ -23,6 +23,4 @@ actor UserController {
         let user = try req.content.decode(CreateUserRequest.self)
         return await service.createUser(with: user)
     }
-    
-    
 }
